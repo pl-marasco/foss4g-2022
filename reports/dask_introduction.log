@@ -17,23 +17,34 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-from distributed import Client
-
-if cluster:
-    client = Client(cluster) # create a dask Gateway cluster
-else:
-    client = Client()   # create a local dask cluster on the machine.
-client
+catalogue="https://object-store.cloud.muni.cz/swift/v1/foss4g-catalogue/c_gls_NDVI-LTS_1999-2019.json"
+LTS = xr.open_mfdataset(
+    "reference://", engine="zarr",
+    backend_kwargs={
+        "storage_options": {
+            "fo":catalogue
+                    },
+        "consolidated": False
+    }
+)
+LTS
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mNameError[0m                                 Traceback (most recent call last)
-Input [0;32mIn [11][0m, in [0;36m<cell line: 3>[0;34m()[0m
-[1;32m      1[0m [38;5;28;01mfrom[39;00m [38;5;21;01mdistributed[39;00m [38;5;28;01mimport[39;00m Client
-[0;32m----> 3[0m [38;5;28;01mif[39;00m [43mcluster[49m:
-[1;32m      4[0m     client [38;5;241m=[39m Client(cluster) [38;5;66;03m# create a dask Gateway cluster[39;00m
-[1;32m      5[0m [38;5;28;01melse[39;00m:
+Input [0;32mIn [2][0m, in [0;36m<cell line: 2>[0;34m()[0m
+[1;32m      1[0m catalogue[38;5;241m=[39m[38;5;124m"[39m[38;5;124mhttps://object-store.cloud.muni.cz/swift/v1/foss4g-catalogue/c_gls_NDVI-LTS_1999-2019.json[39m[38;5;124m"[39m
+[0;32m----> 2[0m LTS [38;5;241m=[39m [43mxr[49m[38;5;241m.[39mopen_mfdataset(
+[1;32m      3[0m     [38;5;124m"[39m[38;5;124mreference://[39m[38;5;124m"[39m, engine[38;5;241m=[39m[38;5;124m"[39m[38;5;124mzarr[39m[38;5;124m"[39m,
+[1;32m      4[0m     backend_kwargs[38;5;241m=[39m{
+[1;32m      5[0m         [38;5;124m"[39m[38;5;124mstorage_options[39m[38;5;124m"[39m: {
+[1;32m      6[0m             [38;5;124m"[39m[38;5;124mfo[39m[38;5;124m"[39m:catalogue
+[1;32m      7[0m                     },
+[1;32m      8[0m         [38;5;124m"[39m[38;5;124mconsolidated[39m[38;5;124m"[39m: [38;5;28;01mFalse[39;00m
+[1;32m      9[0m     }
+[1;32m     10[0m )
+[1;32m     11[0m LTS
 
-[0;31mNameError[0m: name 'cluster' is not defined
-NameError: name 'cluster' is not defined
+[0;31mNameError[0m: name 'xr' is not defined
+NameError: name 'xr' is not defined
 
