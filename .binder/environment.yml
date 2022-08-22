@@ -24,11 +24,11 @@ dependencies:
   - dask
   - fsspec
   - s3fs
-  - ipycytoscape
+  #- ipycytoscape
   - pip
   - pip:
-    - wget
-    - sphinx-exercise
+    #- wget
+    #- sphinx-exercise
     - kerchunk==0.0.7
     - jupytext
-    - nbgitpuller
+    #- nbgitpuller
